@@ -1,12 +1,13 @@
 services:
   mariadb:
     image: mariadb:latest
-    restart: always
+    restart: no
     environment:
       MYSQL_ROOT_PASSWORD: ${DB_ROOT_PASSWORD}
       MYSQL_DATABASE: ${DB_NAME}
       MYSQL_USER: ${DB_USER}
       MYSQL_PASSWORD: ${DB_PASSWORD}
+      TZ: ${DB_TZ}
     ports:
       - "${DB_PORT}:3306"
     volumes:
@@ -15,7 +16,7 @@ services:
 
   phpmyadmin:
     image: phpmyadmin/phpmyadmin
-    restart: always
+    restart: no
     environment:
       PMA_HOST: mariadb
       PMA_USER: ${DB_USER}
